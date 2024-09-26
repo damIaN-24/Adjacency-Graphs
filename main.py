@@ -24,37 +24,53 @@ graph = {
 #
 # node_connection(graph,"A", "B")
 #
-from stack import Stack
+# from stack import Stack
 
-stack_obj = Stack()
+# stack_obj = Stack()
+#
+from queue import ListQueue
+#
+#
+# current_node = "J"
+# visited_list = [current_node]
+# queue_list = ListQueue()
+#
+# queue_list.enqueue(current_node)
+#
+# while queue_list.get_size() > 0:
+#     temp_current = current_node
+#
+#     for neighbour in sorted(graph[current_node]):
+#
+#         if neighbour not in visited_list:
+#             current_node = neighbour
+#             queue_list.enqueue(current_node)
+#             visited_list.append(current_node)
+#             break
+#
+#     if temp_current == current_node:
+#         current_node = queue_list.dequeue()
+#
+# print(visited_list)
 
 
-
+#Depth first traversal
 current_node = "J"
 visited_list = [current_node]
+queue_list = ListQueue()
 
-stack_obj.push(current_node)
+#Take in first node into the queue
+queue_list.enqueue(current_node)
 
-while stack_obj.get_size() > 0:
-    temp_current = current_node
-
+#loop through node neighbours
+while queue_list.get_size() > 0:
+    current_node = queue_list.dequeue()
     for neighbour in sorted(graph[current_node]):
-
         if neighbour not in visited_list:
-            current_node = neighbour
-            stack_obj.push(current_node)
-            visited_list.append(current_node)
-            break
-
-    if temp_current == current_node:
-        current_node = stack_obj.pop()
+            visited_list.append(neighbour)
+            queue_list.enqueue(neighbour)
 
 print(visited_list)
-
-
-
-
-
 
 
 
